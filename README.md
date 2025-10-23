@@ -49,16 +49,21 @@ Certificates will be stored at:
 ## 3️⃣ Configure Nginx for SSL Redirection
 
 ```bash
-sudo nano /etc/nginx/sites-available/harishshetty.xyz
-```
+#!/bin/bash
+# === Update and install dependencies ===
+apt update -y
+apt install nginx certbot python3-certbot-nginx -y
 
-Paste the following:
+# === Enable and start Nginx ===
+systemctl enable nginx
+systemctl start nginx
 
-```nginx
+# === Set up Nginx configuration for harishshetty.xyz ===
+cat <<EOF >/etc/nginx/sites-available/harishshetty.xyz
 server {
     listen 80;
     server_name *.harishshetty.xyz harishshetty.xyz;
-    return 301 https://$host$request_uri;
+    return 301 https://\$host\$request_uri;
 }
 
 server {
@@ -73,17 +78,15 @@ server {
         index index.html index.htm;
     }
 }
-```
+EOF
 
----
+# === Remove default site and enable custom site ===
+rm -f /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/harishshetty.xyz /etc/nginx/sites-enabled/
 
-## 4️⃣ Create a Simple HTML Page
-
-```bash
-sudo nano /var/www/html/index.html
-```
-
-```html
+# === Create website content ===
+mkdir -p /var/www/html
+cat <<EOF >/var/www/html/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,27 +95,13 @@ sudo nano /var/www/html/index.html
   <title>AWS Route 53 Region Test</title>
 </head>
 <body>
-  <h1>AP-SOUTH-1</h1>
+  <h1>US-EAST-1</h1>
 </body>
 </html>
-```
+EOF
 
----
-
-## 5️⃣ Enable Site Configuration
-
-```bash
-sudo apt update
-sudo apt install nginx certbot python3-certbot-nginx -y
-
-sudo systemctl enable nginx
-sudo systemctl start nginx
-sudo nginx -t
-sudo systemctl status nginx
-
-sudo ln -s /etc/nginx/sites-available/harishshetty.xyz /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
+# === Restart Nginx to apply HTTP configuration ===
+systemctl restart nginx
 ```
 
 ---
