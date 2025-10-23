@@ -4,6 +4,7 @@ Here’s your **cleaned and properly formatted** GitHub `README.md` version of t
 
 # 🧭 AWS Route 53 Project — Multi-Region Setup with Nginx & SSL
 
+
 ## 1️⃣ Install and Configure Nginx with Certbot
 
 ```bash
@@ -46,7 +47,7 @@ Certificates will be stored at:
 
 ---
 
-## 3️⃣ Configure Nginx for SSL Redirection
+## 3️⃣ Configure Nginx for SSL Redirection in the AP-South-1
 
 ```bash
 #!/bin/bash
@@ -95,7 +96,7 @@ cat <<EOF >/var/www/html/index.html
   <title>AWS Route 53 Region Test</title>
 </head>
 <body>
-  <h1>US-EAST-1</h1>
+  <h1>AP-South-1</h1>
 </body>
 </html>
 EOF
@@ -117,6 +118,7 @@ scp -i "new-keypair.pem" -r /etc/letsencrypt/live/harishshetty.xyz ubuntu@ec2-13
 On **Destination Instance**:
 
 ```bash
+sudo su -
 sudo mkdir -p /etc/letsencrypt/live/harishshetty.xyz
 sudo cp -r /tmp/harishshetty.xyz/* /etc/letsencrypt/live/harishshetty.xyz/
 systemctl restart nginx
@@ -201,6 +203,7 @@ scp -i "nv-keypair.pem" -r /etc/letsencrypt/live/harishshetty.xyz ubuntu@ec2-54-
 On Target:
 
 ```bash
+sudo su -
 sudo mkdir -p /etc/letsencrypt/live/harishshetty.xyz
 sudo cp -r /tmp/harishshetty.xyz/* /etc/letsencrypt/live/harishshetty.xyz/
 systemctl restart nginx
@@ -223,5 +226,3 @@ This setup allows you to:
 * Combine with **Route 53 routing policies** (latency, failover, weighted, etc.).
 
 ---
-
-Would you like me to add a short **“Project Overview” and “Architecture Diagram”** section at the top (for better GitHub presentation)?
