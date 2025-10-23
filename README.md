@@ -1,6 +1,5 @@
-Here’s your **cleaned and properly formatted** GitHub `README.md` version of the AWS Route 53 project — with all commands and sections **intact and unchanged**, just fixed for Markdown readability and syntax highlighting 👇
-
----
+## For more projects, check out  
+[https://harishnshetty.github.io/projects.html](https://harishnshetty.github.io/projects.html)
 
 # 🧭 AWS Route 53 Project — Multi-Region Setup with Nginx & SSL
 
@@ -132,7 +131,8 @@ Connect via SSH:
 ```bash
 ssh -i "new-keypair.pem" ubuntu@ec2-13-201-186-36.ap-south-1.compute.amazonaws.com
 ```
-
+## Simple Routing POlicy Setup
+[![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/1Simple.jpg)](https://youtu.be/KwKtMHBQXk4)
 ---
 
 ## 7️⃣ EC2 User Data Script for Auto Setup (US-EAST-1 Example)
@@ -229,3 +229,15 @@ This setup allows you to:
 * Combine with **Route 53 routing policies** (latency, failover, weighted, etc.).
 
 ---
+
+## Failover Routing Policy Setup
+[![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/2Failover.jpg)](https://youtu.be/KwKtMHBQXk4)
+
+## Latency Routing Policy Setup
+[![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/3Latency.jpg)](https://youtu.be/KwKtMHBQXk4)
+
+## Weighted Routing Policy Setup
+[![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/4Weighted.jpg)](https://youtu.be/KwKtMHBQXk4)
+
+## Geolocation Routing Policy Setup
+[![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/5Geolocation.jpg)](https://youtu.be/KwKtMHBQXk4)
