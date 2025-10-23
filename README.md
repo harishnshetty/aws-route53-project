@@ -1,8 +1,9 @@
-## For more projects, check out  
-[https://harishnshetty.github.io/projects.html](https://harishnshetty.github.io/projects.html)
+
 
 # 🧭 AWS Route 53 Project — Multi-Region Setup with Nginx & SSL
 
+## For more projects, check out  
+[https://harishnshetty.github.io/projects.html](https://harishnshetty.github.io/projects.html)
 
 ## 1️⃣ Install and Configure Nginx with Certbot
 
@@ -131,7 +132,33 @@ Connect via SSH:
 ```bash
 ssh -i "new-keypair.pem" ubuntu@ec2-13-201-186-36.ap-south-1.compute.amazonaws.com
 ```
-## Simple Routing POlicy Setup
+## 🟢 1️⃣ Simple Routing Policy
+
+> Sends all traffic to **a single region or endpoint**.
+> Ideal for a simple website or one-region deployment.
+
+```
+ 🌍  Internet Users
+         |
+         ▼
+   +----------------+
+   |   Route 53     |
+   |  Simple Record |
+   +----------------+
+         |
+         ▼
+ ┌────────────────────┐
+ | EC2 (ap-south-1)   |
+ | Nginx + SSL + HTML |
+ | <h1>AP-SOUTH-1</h1>|
+ └────────────────────┘
+```
+
+✅ **Use Case:** Single-region static or dynamic site.
+💡 Example DNS record:
+`harishshetty.xyz → EC2 (ap-south-1)`
+
+---
 [![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/1Simple.jpg)](https://youtu.be/KwKtMHBQXk4)
 ---
 
