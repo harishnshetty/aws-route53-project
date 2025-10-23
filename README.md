@@ -257,11 +257,130 @@ This setup allows you to:
 
 ---
 
-## Failover Routing Policy Setup
+## 🧩 3️⃣ Failover Routing Policy
+
+> Uses **Primary and Secondary** endpoints.
+> If the **primary fails (health check fails)**, traffic automatically shifts to the **secondary**.
+
+```
+           🌍 Internet Users
+                   |
+                   ▼
+            +----------------+
+            |   Route 53     |
+            | Failover Policy|
+            +----------------+
+                   |
+                   ▼
+        ┌───────────────────────┐
+        | Health Check: Primary |
+        | EC2 (ap-south-1)      |
+        └───────────────────────┘
+                   |
+                   ▼
+        ✅ Healthy → Serve traffic
+        ❌ Unhealthy → Failover ▼
+                     ┌──────────────────────┐
+                     | Secondary EC2        |
+                     | (us-east-1)          |
+                     └──────────────────────┘
+```
+
+✅ **Use Case:** Disaster recovery, high availability
+💡 Example: `failover.harishshetty.xyz`
+---
+
 [![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/2Failover.jpg)](https://youtu.be/KwKtMHBQXk4)
+
+---
+## ⚡ 2️⃣ Latency Routing Policy
+
+> Routes users to the **region with the lowest latency** based on geographic proximity.
+> Optimized for **performance** and **user experience**.
+
+```
+           🌍 Internet Users (Global)
+                   |
+                   ▼
+            +----------------+
+            |   Route 53     |
+            | Latency Policy |
+            +----------------+
+             /             \
+            ▼               ▼
+┌──────────────────┐   ┌──────────────────┐
+| EC2 (ap-south-1) |   | EC2 (us-east-1)  |
+| <h1>AP-SOUTH-1</h1>  | <h1>US-EAST-1</h1> |
+└──────────────────┘   └──────────────────┘
+
+📍 Users in Asia → ap-south-1  
+📍 Users in US → us-east-1
+```
+
+✅ **Use Case:** Multi-region site for best speed globally.
+💡 Example: `latency.harishshetty.xyz`
+
+---
+
 
 ## Latency Routing Policy Setup
 [![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/3Latency.jpg)](https://youtu.be/KwKtMHBQXk4)
+
+---
+## ⚖️ 4️⃣ Weighted Routing Policy
+
+> Distributes traffic based on **assigned weights** (e.g., 70% vs 30%).
+> Ideal for **A/B testing**, **gradual migrations**, or **blue-green deployments**.
+
+```
+           🌍 Internet Users
+                   |
+                   ▼
+            +----------------+
+            |   Route 53     |
+            | Weighted Policy|
+            +----------------+
+             /             \
+         (70%)           (30%)
+           ▼               ▼
+┌──────────────────┐   ┌──────────────────┐
+| EC2 (ap-south-1) |   | EC2 (us-east-1)  |
+| <h1>AP-SOUTH-1</h1>  | <h1>US-EAST-1</h1> |
+└──────────────────┘   └──────────────────┘
+```
+
+✅ **Use Case:** Gradual rollout, load distribution
+💡 Example: `weighted.harishshetty.xyz`
+
+---
+## 🗺️ 5️⃣ Geolocation Routing Policy
+
+> Routes users based on their **geographic location**.
+> Ensures region-specific content (language, pricing, or compliance).
+
+```
+           🌍 Internet Users
+           ┌───────────────┬───────────────┐
+           │               │               │
+           ▼               ▼               ▼
+      India Users      US Users       Europe Users
+           │               │               │
+           ▼               ▼               ▼
+   +----------------+   +----------------+   +----------------+
+   |  Route 53      |   |  Route 53      |   |  Route 53      |
+   | Geolocation    |   | Geolocation    |   | Geolocation    |
+   +----------------+   +----------------+   +----------------+
+           │               │               │
+           ▼               ▼               ▼
+┌──────────────────┐   ┌──────────────────┐   ┌──────────────────┐
+| EC2 (ap-south-1) |   | EC2 (us-east-1)  |   | EC2 (eu-central-1)|
+| <h1>AP-SOUTH-1</h1>  | <h1>US-EAST-1</h1> | <h1>EU-CENTRAL-1</h1>|
+└──────────────────┘   └──────────────────┘   └──────────────────┘
+```
+
+✅ **Use Case:** Country/region-specific content or compliance
+💡 Example: `geo.harishshetty.xyz`
+
 
 ## Weighted Routing Policy Setup
 [![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/4Weighted.jpg)](https://youtu.be/KwKtMHBQXk4)
