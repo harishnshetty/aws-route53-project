@@ -99,7 +99,7 @@ cat <<EOF >/var/www/html/index.html
   <title>AWS Route 53 Region Test</title>
 </head>
 <body>
-  <h1>AP-South-1</h1>
+  <h1>AP-South-1-server</h1>
 </body>
 </html>
 EOF
@@ -162,6 +162,18 @@ ssh -i "new-keypair.pem" ubuntu@ec2-13-201-186-36.ap-south-1.compute.amazonaws.c
 [![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/1Simple.jpg)](https://youtu.be/KwKtMHBQXk4)
 ---
 
+```bash
+I=1
+while true
+do
+  curl -sL https://app.harishshetty.xyz | grep -i '\-server'
+  echo "The Count value is $I"
+  I=$((I+1))
+  sleep 1
+done
+
+```
+
 ## 7️⃣ EC2 User Data Script for Auto Setup (US-EAST-1 Example)
 
 ```bash
@@ -211,7 +223,7 @@ cat <<EOF >/var/www/html/index.html
   <title>AWS Route 53 Region Test</title>
 </head>
 <body>
-  <h1>US-EAST-1</h1>
+  <h1>US-EAST-1-server</h1>
 </body>
 </html>
 EOF
@@ -293,6 +305,17 @@ This setup allows you to:
 [![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/2Failover.jpg)](https://youtu.be/KwKtMHBQXk4)
 
 ---
+
+```bash
+I=1
+while true
+do
+  curl -sL https://failover.harishshetty.xyz | grep -i '\-server'
+  echo "The Count value is $I"
+  I=$((I+1))
+  sleep 1
+done
+```
 ## ⚡ 2️⃣ Latency Routing Policy
 
 > Routes users to the **region with the lowest latency** based on geographic proximity.
@@ -327,6 +350,16 @@ This setup allows you to:
 [![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/3Latency.jpg)](https://youtu.be/KwKtMHBQXk4)
 
 ---
+```bash
+I=1
+while true
+do
+  curl -sL https://latency.harishshetty.xyz | grep -i '\-server'
+  echo "The Count value is $I"
+  I=$((I+1))
+  sleep 1
+done
+```
 ## ⚖️ 4️⃣ Weighted Routing Policy
 
 > Distributes traffic based on **assigned weights** (e.g., 70% vs 30%).
@@ -353,6 +386,23 @@ This setup allows you to:
 💡 Example: `weighted.harishshetty.xyz`
 
 ---
+
+
+## Weighted Routing Policy Setup
+[![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/4Weighted.jpg)](https://youtu.be/KwKtMHBQXk4)
+
+```bash
+I=1
+while true
+do
+  curl -sL https://weighted.harishshetty.xyz | grep -i '\-server'
+  echo "The Count value is $I"
+  I=$((I+1))
+  sleep 1
+done
+```
+---
+
 ## 🗺️ 5️⃣ Geolocation Routing Policy
 
 > Routes users based on their **geographic location**.
@@ -381,9 +431,16 @@ This setup allows you to:
 ✅ **Use Case:** Country/region-specific content or compliance
 💡 Example: `geo.harishshetty.xyz`
 
-
-## Weighted Routing Policy Setup
-[![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/4Weighted.jpg)](https://youtu.be/KwKtMHBQXk4)
-
 ## Geolocation Routing Policy Setup
 [![Video Tutorial](https://github.com/harishnshetty/image-data-project/blob/b0cd7327a0d04ac52c0cfd8067d8622c2ee775f6/5Geolocation.jpg)](https://youtu.be/KwKtMHBQXk4)
+
+```bash
+I=1
+while true
+do
+  curl -sL https://geo.harishshetty.xyz | grep -i '\-server'
+  echo "The Count value is $I"
+  I=$((I+1))
+  sleep 1
+done
+```
