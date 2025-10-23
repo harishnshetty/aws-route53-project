@@ -26,12 +26,6 @@ sudo certbot certonly --manual --preferred-challenges=dns \
 -d "*.harishshetty.xyz"
 ```
 
-### ✅ Verify DNS Record
-
-```bash
-nslookup -type=TXT _acme-challenge.harishshetty.xyz
-```
-
 Expected Output:
 
 ```
@@ -44,7 +38,16 @@ Certificates will be stored at:
 /etc/letsencrypt/live/harishshetty.xyz/fullchain.pem
 /etc/letsencrypt/live/harishshetty.xyz/privkey.pem
 ```
+---
 
+### ✅ Verify DNS Record
+
+```bash
+nslookup -type=TXT _acme-challenge.harishshetty.xyz
+```
+
+Add TXT in the Route53
+and Confirm  via the google dns and console
 ---
 
 ## 3️⃣ Configure Nginx for SSL Redirection in the AP-South-1
